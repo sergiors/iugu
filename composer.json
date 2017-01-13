@@ -1,0 +1,34 @@
+{
+    "name": "sergiors/iugu",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sérgio Rafael Siqueira",
+            "email": "sergio@inbep.com.br"
+        }
+    ],
+    "require": {
+        "php": "^7.0",
+        "guzzlehttp/guzzle": "^6.2",
+        "fzaninotto/faker": "^1.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sergiors\\Iugu\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sergiors\\Iugu\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "tests": [
+            "vendor/bin/phpunit"
+        ]
+    }
+}
