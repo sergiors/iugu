@@ -12,7 +12,7 @@ use Sergiors\Iugu\Payer\Payer;
 use Sergiors\Iugu\Payer\Phone;
 use Sergiors\Iugu\Payer\Address;
 
-class BankSlipTest extends \PHPUnit_Framework_TestCase
+class IuguTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
