@@ -14,25 +14,16 @@ final class ItemCollection
      */
     private $items;
 
-    /**
-     * @param Item[]
-     */
     public function __construct(Item ...$items)
     {
         $this->items = $items;
     }
 
-    /**
-     * @param Item $item
-     */
     public function add(Item $item)
     {
         $this->items[] = $item;
     }
 
-    /**
-     * @return array
-     */
     public function toArray(): array
     {
         return $this->items;

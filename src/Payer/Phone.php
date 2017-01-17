@@ -19,27 +19,17 @@ final class Phone
      */
     private $number;
 
-    /**
-     * @param int $prefix
-     * @param int $number
-     */
     public function __construct(int $prefix, int $number)
     {
         $this->prefix = $prefix;
         $this->number = $number;
     }
 
-    /**
-     * @return int
-     */
     public function getPrefix()
     {
         return $this->prefix;
     }
 
-    /**
-     * @return int
-     */
     public function getNumber()
     {
         return $this->number;

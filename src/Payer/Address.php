@@ -39,14 +39,6 @@ final class Address
      */
     private $zipCode;
 
-    /**
-     * @param string $street
-     * @param int    $number
-     * @param string $city
-     * @param string $state
-     * @param string $country
-     * @param int    $zipCode
-     */
     public function __construct(
         string $street,
         int $number,
@@ -63,49 +55,31 @@ final class Address
         $this->zipCode = $zipCode;
     }
 
-    /**
-     * @return string
-     */
     public function getStreet(): string
     {
         return $this->street;
     }
 
-    /**
-     * @return int
-     */
     public function getNumber(): int
     {
         return $this->number;
     }
 
-    /**
-     * @return string
-     */
     public function getCity(): string
     {
         return $this->city;
     }
 
-    /**
-     * @return string
-     */
     public function getState(): string
     {
         return $this->state;
     }
 
-    /**
-     * @return string
-     */
     public function getCountry(): string
     {
         return $this->city;
     }
 
-    /**
-     * @return int
-     */
     public function getZipCode(): int
     {
         return $this->zipCode;

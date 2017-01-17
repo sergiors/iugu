@@ -34,13 +34,6 @@ final class Payer
      */
     private $address;
 
-    /**
-     * @param string  $name
-     * @param string  $email
-     * @param int     $cpfCnpj
-     * @param Phone   $phone
-     * @param Address $address
-     */
     public function __construct(string $name, string $email, int $cpfCnpj, Phone $phone, Address $address)
     {
         $this->name = $name;
@@ -50,41 +43,26 @@ final class Payer
         $this->address = $address;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * @return int
-     */
     public function getCpfCnpj(): int
     {
         return $this->cpfCnpj;
     }
 
-    /**
-     * @return Phone
-     */
     public function getPhone(): Phone
     {
         return $this->phone;
     }
 
-    /**
-     * @return Address
-     */
     public function getAddress(): Address
     {
         return $this->address;

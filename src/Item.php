@@ -24,11 +24,6 @@ final class Item
      */
     private $quantity;
 
-    /**
-     * @param string $description
-     * @param float  $amount
-     * @param int    $quantity
-     */
     public function __construct(string $description, float $amount, int $quantity = 1)
     {
         $this->description = $description;
@@ -36,25 +31,16 @@ final class Item
         $this->amount = $amount;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @return int
-     */
     public function getQuantity(): int
     {
         return $this->quantity;
     }
 
-    /**
-     * @return float
-     */
     public function getAmount(): float
     {
         return $this->amount;

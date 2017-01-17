@@ -2,6 +2,7 @@
 
 namespace Sergiors\Iugu\Tests\Functional\Iugu;
 
+use Sergiors\Iugu\Iugu;
 use Sergiors\Iugu\BankSlip;
 use Sergiors\Iugu\Charge;
 use Sergiors\Iugu\Credentials;
@@ -42,10 +43,11 @@ class BankSlipTest extends \PHPUnit_Framework_TestCase
             $address
         );
         $charge = new Charge($payer, $items);
-        $bankSlip = new BankSlip(new Credentials(getenv('IUGU_API_KEY'), getenv('IUGU_EMAIL')), $charge);
+        $credentials = new Credentials(getenv('IUGU_API_KEY'), getenv('IUGU_EMAIL'));
+        $iugu = new Iugu($credentials, $charge, new BankSlip());
 
-        $response = $bankSlip->getResponse();
+        $res = $iugu->getResponse();
 
-        $this->assertArrayHasKey('success', $response);
+        $this->assertArrayHasKey('success', $res);
     }
 }
