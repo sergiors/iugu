@@ -11,6 +11,7 @@ use Sergiors\Iugu\ItemCollection;
 use Sergiors\Iugu\Payer\Payer;
 use Sergiors\Iugu\Payer\Phone;
 use Sergiors\Iugu\Payer\Address;
+use Sergiors\Iugu\PaymentFormatter;
 
 class IuguTest extends \PHPUnit_Framework_TestCase
 {
@@ -44,7 +45,8 @@ class IuguTest extends \PHPUnit_Framework_TestCase
         );
         $charge = new Charge($payer, $items);
         $credentials = new Credentials(getenv('IUGU_API_KEY'), getenv('IUGU_EMAIL'));
-        $iugu = new Iugu($credentials, $charge, new BankSlip());
+        $paymentFormatter = new PaymentFormatter($charge, new BankSlip());
+        $iugu = new Iugu($credentials, $paymentFormatter);
 
         $res = $iugu->getResponse();
 
