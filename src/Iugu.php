@@ -5,6 +5,8 @@ namespace Sergiors\Iugu;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
+use Sergiors\Iugu\Invoice\Response;
+use Sergiors\Iugu\Invoice\ResponseInterface;
 
 /**
  * @author Sérgio Rafael Siqueira <sergio@inbep.com.br>
@@ -38,7 +40,7 @@ final class Iugu
         $this->httpClient = $httpClient ?: new HttpClient();
     }
 
-    public function getResponse(): array
+    public function doInvoice(): ResponseInterface
     {
         $paymentMethod = $this->paymentFormatter->getPaymentMethod();
         $uriAddress = self::HOST.$paymentMethod->getEndpoint();
@@ -48,7 +50,9 @@ final class Iugu
                 'auth' => [$this->credentials->getApiKey(), ''],
                 'json' => $this->paymentFormatter->toArray(),
             ]);
-            return json_decode($response->getBody()->getContents(), true);
+            
+            $data = json_decode($response->getBody()->getContents(), true);
+            return new Response($data);
         } catch (GuzzleException $e) {
             throw new \InvalidArgumentException($e->getMessage());
         }

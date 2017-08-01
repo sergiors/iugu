@@ -11,12 +11,29 @@ final class BankSlip implements PaymentMethodInterface
 {
     /**
      * @var string
+     * 
+     * @TODO it's should moved
      */
-    const ENDPOINT = '/v1/charge';
+    const ENDPOINT = '/v1/invoices';
+
+    /**
+     * @var \DateTime
+     */
+    private $dueDate;
+
+    public function __construct(\DateTime $dueDate = null)
+    {
+        $this->dueDate = $dueDate ?: new \DateTime('now + 3 days');
+    }
 
     public function getName(): string
     {
         return 'bank_slip';
+    }
+
+    public function getDueDate()
+    {
+        return $this->dueDate;
     }
 
     public function getEndpoint(): string

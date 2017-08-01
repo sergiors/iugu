@@ -22,6 +22,11 @@ final class Address
     /**
      * @var string
      */
+    private $district;
+
+    /**
+     * @var string
+     */
     private $city;
 
     /**
@@ -42,6 +47,7 @@ final class Address
     public function __construct(
         string $street,
         int $number,
+        string $district,
         string $city,
         string $state,
         string $country,
@@ -49,6 +55,7 @@ final class Address
     ) {
         $this->street = $street;
         $this->number = $number;
+        $this->district = $district;
         $this->city = $city;
         $this->state = $state;
         $this->country = $country;
@@ -63,6 +70,11 @@ final class Address
     public function getNumber(): int
     {
         return $this->number;
+    }
+
+    public function getDistrict(): string
+    {
+        return $this->district;
     }
 
     public function getCity(): string

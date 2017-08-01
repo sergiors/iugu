@@ -46,7 +46,8 @@ final class PaymentFormatter
              * https://iugu.com/referencias/api
              */
             'email' => $payer->getEmail(),
-            'method' => $this->paymentMethod->getName(),
+            'payable_with' => $this->paymentMethod->getName(),
+            'due_date' => $this->paymentMethod->getDueDate()->format('Y-m-d'),
             'items' => array_map(function (Item $item) {
                 return [
                     'description' => $item->getDescription(),
@@ -57,16 +58,17 @@ final class PaymentFormatter
             'payer' => [
                 'name' => $payer->getName(),
                 'email' => $payer->getEmail(),
-                'cpf_cnpj' => $payer->getCpfCnpj(),
-                'phone_prefix' => $payer->getPhone()->getPrefix(),
-                'phone' => $payer->getPhone()->getNumber(),
+                'cpf_cnpj' => (string) $payer->getCpfCnpj(),
+                'phone_prefix' => (string) $payer->getPhone()->getPrefix(),
+                'phone' => (string) $payer->getPhone()->getNumber(),
                 'address' => [
                     'street' => $payer->getAddress()->getStreet(),
-                    'number' => $payer->getAddress()->getNumber(),
+                    'number' => (string) $payer->getAddress()->getNumber(),
                     'city' => $payer->getAddress()->getCity(),
+                    'district' => $payer->getAddress()->getDistrict(),
                     'state' => $payer->getAddress()->getState(),
                     'country' => $payer->getAddress()->getCountry(),
-                    'zip_code' => $payer->getAddress()->getZipCode(),
+                    'zip_code' => (string) $payer->getAddress()->getZipCode(),
                 ],
             ]
         ];

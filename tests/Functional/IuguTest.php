@@ -12,6 +12,7 @@ use Sergiors\Iugu\Payer\Payer;
 use Sergiors\Iugu\Payer\Phone;
 use Sergiors\Iugu\Payer\Address;
 use Sergiors\Iugu\PaymentFormatter;
+use Sergiors\Iugu\Invoice\ResponseInterface;
 
 class IuguTest extends \PHPUnit_Framework_TestCase
 {
@@ -20,8 +21,10 @@ class IuguTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldReturnSuccess()
     {
-        $faker = \Faker\Factory::create();
-        $postcode = preg_replace('/\D/', '', $faker->postcode);
+        $faker = \Faker\Factory::create('pt_BR');
+        $faker->addProvider(new \Faker\Provider\pt_BR\Address($faker));
+        $postcode = 88034000;
+        $cpf = preg_replace('/\D/', '', $faker->cpf);
 
         $items = new ItemCollection(...[
             new Item('Item 1', 10.00),
@@ -30,6 +33,7 @@ class IuguTest extends \PHPUnit_Framework_TestCase
         $address = new Address(
             $faker->streetName,
             $faker->buildingNumber,
+            $faker->word,
             $faker->city,
             $faker->stateAbbr,
             $faker->country,
@@ -39,7 +43,7 @@ class IuguTest extends \PHPUnit_Framework_TestCase
         $payer = new Payer(
             $faker->name,
             $faker->email,
-            $faker->randomNumber(),
+            $cpf,
             $phone,
             $address
         );
@@ -48,8 +52,6 @@ class IuguTest extends \PHPUnit_Framework_TestCase
         $paymentFormatter = new PaymentFormatter($charge, new BankSlip());
         $iugu = new Iugu($credentials, $paymentFormatter);
 
-        $res = $iugu->getResponse();
-
-        $this->assertArrayHasKey('success', $res);
+        $this->assertInstanceOf(ResponseInterface::class, $iugu->doInvoice());
     }
 }

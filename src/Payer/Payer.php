@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Sergiors\Iugu\Payer;
 
+use Respect\Validation\Validator as v;
+
 /**
  * @author Sérgio Rafael Siqueira <sergio@inbep.com.br>
  */
@@ -34,8 +36,22 @@ final class Payer
      */
     private $address;
 
-    public function __construct(string $name, string $email, int $cpfCnpj, Phone $phone, Address $address)
-    {
+    public function __construct(
+        string $name,
+        string $email,
+        int $cpfCnpj,
+        Phone $phone,
+        Address $address
+    ) {
+        $cpfOrCnpjValid = function (int $x) {
+            return v::cpf()->validate($x)
+                || v::cpf()->validate($x);
+        };
+
+        if (false === $cpfOrCnpjValid($cpfCnpj)) {
+            throw new \InvalidArgumentException('CPF or CNPJ does not valid!');
+        }
+
         $this->name = $name;
         $this->email = $email;
         $this->cpfCnpj = $cpfCnpj;
