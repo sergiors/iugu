@@ -22,7 +22,7 @@ final class Payer
     private $email;
 
     /**
-     * @var int
+     * @var string
      */
     private $cpfCnpj;
 
@@ -39,11 +39,11 @@ final class Payer
     public function __construct(
         string $name,
         string $email,
-        int $cpfCnpj,
+        string $cpfCnpj,
         Phone $phone,
         Address $address
     ) {
-        $cpfOrCnpjValid = function (int $x) {
+        $cpfOrCnpjValid = function ($x) {
             return v::cpf()->validate($x)
                 || v::cpf()->validate($x);
         };
@@ -69,7 +69,7 @@ final class Payer
         return $this->email;
     }
 
-    public function getCpfCnpj(): int
+    public function getCpfCnpj(): string
     {
         return $this->cpfCnpj;
     }

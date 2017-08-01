@@ -58,7 +58,7 @@ final class PaymentFormatter
             'payer' => [
                 'name' => $payer->getName(),
                 'email' => $payer->getEmail(),
-                'cpf_cnpj' => (string) $payer->getCpfCnpj(),
+                'cpf_cnpj' => $payer->getCpfCnpj(),
                 'phone_prefix' => (string) $payer->getPhone()->getPrefix(),
                 'phone' => (string) $payer->getPhone()->getNumber(),
                 'address' => [
