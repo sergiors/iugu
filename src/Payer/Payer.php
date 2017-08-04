@@ -45,7 +45,7 @@ final class Payer
     ) {
         $cpfOrCnpjValid = function ($x) {
             return v::cpf()->validate($x)
-                || v::cpf()->validate($x);
+                || v::cnpj()->validate($x);
         };
 
         if (false === $cpfOrCnpjValid($cpfCnpj)) {
