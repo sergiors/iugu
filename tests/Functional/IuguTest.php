@@ -23,7 +23,7 @@ class IuguTest extends \PHPUnit_Framework_TestCase
     {
         $faker = \Faker\Factory::create('pt_BR');
         $faker->addProvider(new \Faker\Provider\pt_BR\Address($faker));
-        $postcode = 88034000;
+        $postcode = '88034000';
         $cpf = preg_replace('/\D/', '', $faker->cpf);
 
         $items = new ItemCollection(...[

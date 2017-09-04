@@ -63,12 +63,12 @@ final class PaymentFormatter
                 'phone' => (string) $payer->getPhone()->getNumber(),
                 'address' => [
                     'street' => $payer->getAddress()->getStreet(),
-                    'number' => (string) $payer->getAddress()->getNumber(),
+                    'number' => $payer->getAddress()->getNumber(),
                     'city' => $payer->getAddress()->getCity(),
                     'district' => $payer->getAddress()->getDistrict(),
                     'state' => $payer->getAddress()->getState(),
                     'country' => $payer->getAddress()->getCountry(),
-                    'zip_code' => (string) $payer->getAddress()->getZipCode(),
+                    'zip_code' => $payer->getAddress()->getZipCode(),
                 ],
             ]
         ];

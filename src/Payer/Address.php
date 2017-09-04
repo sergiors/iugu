@@ -46,12 +46,12 @@ final class Address
 
     public function __construct(
         string $street,
-        int $number,
+        string $number,
         string $district,
         string $city,
         string $state,
         string $country,
-        int $zipCode
+        string $zipCode
     ) {
         $this->street = $street;
         $this->number = $number;
@@ -67,7 +67,7 @@ final class Address
         return $this->street;
     }
 
-    public function getNumber(): int
+    public function getNumber(): string
     {
         return $this->number;
     }
@@ -92,7 +92,7 @@ final class Address
         return $this->city;
     }
 
-    public function getZipCode(): int
+    public function getZipCode(): string
     {
         return $this->zipCode;
     }
